@@ -18,9 +18,10 @@ function addDeleteButtons() {
 
       row.appendChild(deleteButton);
     });
-
+    
     addTotalRow();
-    buttonsAndRowAdded = true;
+    makeBox()
+    
   }
 }
 
@@ -43,6 +44,7 @@ function addTotalRow() {
   var totalGradeCell = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("div");
   totalGradeCell.className = "cell grade";
   totalGradeCell.textContent = "Total Grades: ";
+  
 
   var totalPointsCell = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("div");
   totalPointsCell.className = "cell pointsPossible";
@@ -63,6 +65,42 @@ function addTotalRow() {
   var gradesTable = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelector("#grades_wrapper");
   gradesTable.insertBefore(totalRow, gradesTable.firstChild);
 }
+
+function makeBox() {
+  var flexBox = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelector(".contentBox");
+  flexBox.setAttribute("style", "display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));");
+  var myGradeRemove = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelector("#pageTitleDiv");
+  myGradeRemove.remove()
+
+  var className = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelector("#crumb_1");
+  className = className.innerText;
+
+
+  var containerOver = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelector("#containerdiv");
+  containerOver.setAttribute("style", "overflow-y: scroll; max-height:90vh; overflow-x: hidden;");
+
+  var classData = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("div");
+  classData.setAttribute("style", "display: flex; justify-content: center; margin-top: 20px; background: white; padding: 20px; border: 2px solid #cdcdcd; max-height:90vh; ");
+  
+  var classDataTitle = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("h1");
+  classDataTitle.className = "uic-class-title";
+  classDataTitle.setAttribute("style", "font-size: 30px;");
+  classDataTitle.textContent = "Classes: " + className;
+
+  classData.append(classDataTitle);
+
+
+  
+
+
+  flexBox.append(classData, containerOver.nextSibling);
+
+
+
+
+}
+
+
 
 // Function to calculate and display total grades, total points, and percentage
 function calculateAndDisplayTotal() {

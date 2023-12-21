@@ -3,7 +3,7 @@
   "name": "Check ID Extension",
   "version": "1.0",
   "description": "Check if a website has a certain ID.",
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab", "webNavigation", "storage"],
   "browser_action": {
     "default_icon": {
       "48": "icon.png"
