@@ -164,6 +164,21 @@ function filterAndDisplayResults(searchTerm) {
   });
 }
 
+function filterCourses(searchCourses) {
+  var coursesList = document.querySelectorAll("#container-term-current .subheader");
+  console.coursesList
+  coursesList.forEach(function (courses) {
+    var courseName = courses.textContent.toLowerCase();
+    var isVisible = courseName.includes(searchCourses);
+
+    var courseRow = courses.closest('.active-course');
+    console.log(courseRow)
+    if (courseRow) {
+      courseRow.style.display = isVisible ? "block" : "none";
+    }
+  });
+}
+
 
 
 
@@ -235,7 +250,69 @@ function calculateAndDisplayTotal() {
 }
 
 
+function isGradesPage() {
+  var urlPattern = "https://uic.blackboard.com/ultra/grades";
+  return window.location.href === urlPattern;
+}
 
+
+function processGradesPage() {
+  if (isGradesPage()) {
+    var gradePageContent = document.querySelector("#container-term-current .grades-list .base-grades-term-wrapper");
+    
+    if (gradePageContent) {
+      
+      var gradeContent = document.querySelector("#container-term-current .grades-list .base-grades-term-wrapper");
+      gradeContent.setAttribute("style", "display: flex; flex-direction: row; flex-wrap: wrap; margin: 0px; min-width: 90vw; justify-content: center;");
+
+      var gradeCourses = gradeContent.querySelectorAll(".active-course");
+
+      gradeCourses.forEach(function (course) {
+        course.setAttribute("style", "width: 500px; height: 450px; margin-left: 10px; margin-right: 10px;");
+      });
+
+      var searchAva = document.querySelector(".current-term .searchCourses")
+      if (!searchAva) {
+        var searchCourses = document.createElement("input");
+        var gradeContentPage = document.querySelector("#container-term-current .current-term");
+        searchCourses.className = "searchCourses"
+        searchCourses.type = "text";
+        searchCourses.setAttribute("style", "width: 300px; height: 53px; border-radius: 17px; border: 1px solid #000; font-size: 20px; margin-left: auto; margin-right: auto; margin-bottom: 30px; ");
+        searchCourses.placeholder = "Search for a course...";
+        searchCourses.addEventListener("input", function (event) {
+          var searchCourses = event.target.value.toLowerCase();
+          filterCourses(searchCourses);
+        });
+
+        gradeContentPage.insertBefore(searchCourses, gradeContentPage.children[1]);
+
+
+      }
+      
+    }
+  }
+}
+
+function observeDOMChanges() {
+  var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+    
+      processGradesPage();
+    });
+  });
+
+  var targetNode = document.body;
+
+  var config = { childList: true, subtree: true };
+
+
+  observer.observe(targetNode, config);
+}
+
+
+processGradesPage();
+
+observeDOMChanges();
 
 
 
