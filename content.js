@@ -119,22 +119,97 @@ function gradePage() {
   //Misc
   var miscContent = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("div");
   miscContent.className = "miscContent";
-  miscContent.setAttribute("style", "border-radius: 20px; border: 1px solid #000; display:flex; width: 100%; height: 50vh; flex-direction: column;");
+  miscContent.setAttribute("style", "border-radius: 20px; border: 1px solid #000; display:flex; width: 100%; height: 50vh; flex-direction: column; justify-content: center;");
 
 
   var searchBar = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("input");
   searchBar.type = "text";
-  searchBar.setAttribute("style", "margin-top: 10px; margin-left: 10px; width: 96%; height: 53px; border-radius: 17px; border: 1px solid #000; font-size: 20px; ");
+  searchBar.setAttribute("style", "margin-top: 10px; margin-left: 10px; width: 95%; height: 53px; border-radius: 17px; border: 1px solid #000; font-size: 20px; ");
   searchBar.placeholder = "Search for an assignment...";
   searchBar.addEventListener("input", function (event) {
     var searchTerm = event.target.value.toLowerCase();
     filterAndDisplayResults(searchTerm);
   });
 
+  var calculateDesire = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("div");
+  calculateDesire.setAttribute("style", "width: 100%; height: 500px; flex-direction: row; display: flex; justify-content: space-between");
+
+  var calculateDesireCalculatePart = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("div");
+  calculateDesireCalculatePart.setAttribute("style", "width: 45%; height: 500px; flex-direction: column; display: flex;");
+  
+  var percentageInput = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("input");
+  percentageInput.type = "number";
+  percentageInput.setAttribute("style", "margin-top: 10px; margin-left: 10px; width: 80%; height: 50px; border-radius: 17px; border: 1px solid #000; font-size: 16px; padding-left: 15px;");
+  percentageInput.placeholder = "Desired Percentage (ex. 85 for 85%)";
+  
+  // Input box for credit left
+  var creditLeftInput = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("input");
+  creditLeftInput.type = "number";
+  creditLeftInput.setAttribute("style", "margin-top: 10px; margin-left: 10px; width: 80%; height: 50px; border-radius: 17px; border: 1px solid #000; font-size: 16px; padding-left: 15px; ");
+  creditLeftInput.placeholder = "Credit Left (ex. 200 for 200 credit left)";
+
+  // Button to calculate required credit
+  var calculateButton = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("button");
+  calculateButton.textContent = "Calculate Required Credit";
+  calculateButton.setAttribute("style", "margin-top: 10px; margin-left: 10px; width: 85%; height: 50px; border-radius: 17px; border: 1px solid #000; font-size: 16px; cursor: pointer;");
+  calculateButton.addEventListener("click", function () {
+    var desiredPercentage = parseFloat(percentageInput.value);
+    var creditLeft = parseFloat(creditLeftInput.value);
+    var requiredCredit = calculateRequiredCredit(desiredPercentage, creditLeft);
+
+    var percentageGoes = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelector(".calculate-desired-text .desired-percentage");
+    percentageGoes.textContent = "You want: " + desiredPercentage + "%"
+
+    var creditLeftGoes = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelector(".calculate-desired-text .credit-left");
+    creditLeftGoes.textContent = "You have: " + creditLeft + " credit left"
+
+    var percentageGoes = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelector(".calculate-desired-text .required-credit");
+    percentageGoes.textContent = "You need: " + requiredCredit.toFixed(2) + " to get " + desiredPercentage + "% in this class!"
+
+
+    console.log("Required Credit:", requiredCredit);
+  });
+
+  calculateDesireCalculatePart.append(percentageInput)
+  calculateDesireCalculatePart.append(creditLeftInput)
+  calculateDesireCalculatePart.append(calculateButton)
+
+
+  //Calculate Text Part
+  var calculateDesireTextPart = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("div");
+  calculateDesireTextPart.className = "calculate-desired-text"
+  calculateDesireTextPart.setAttribute("style", "width: 45%; height: 200px; flex-direction: column; display: flex; border-radius: 17px; border: 1px solid #000; margin-top: 10px; margin-right: 20px;");
+  
+  var percentageText = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("span");
+  percentageText.className = "desired-percentage"
+  percentageText.setAttribute("style", "margin-top: 10px; margin-left: 10px; width: 96%; height: 30px;  font-size: 20px; ");
+  percentageText.textContent = "Desired Percent";
+  
+  // Input box for credit left
+  var creditLeftText = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("span");
+  creditLeftText.className = "credit-left"
+  creditLeftText.setAttribute("style", "margin-top: 10px; margin-left: 10px; width: 96%; height: 30px; font-size: 20px; ");
+  creditLeftText.textContent = "Credit Left";
+
+  // Button to calculate required credit
+  var requiredCreditText = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("span");
+  requiredCreditText.className = "required-credit"
+  requiredCreditText.textContent = "Click Button to View";
+  requiredCreditText.setAttribute("style", "margin-top: 10px; margin-left: 10px; width: 96%; height: 30px;  font-size: 20px; ");
+  
+
+  calculateDesireTextPart.append(percentageText)
+  calculateDesireTextPart.append(creditLeftText)
+  calculateDesireTextPart.append(requiredCreditText)
+
+
+  calculateDesire.append(calculateDesireCalculatePart)
+  calculateDesire.append(calculateDesireTextPart)
   
 
   
   miscContent.append(searchBar)
+  miscContent.append(calculateDesire)
 
 
   classData.append(classDataTitle);
@@ -150,6 +225,8 @@ function gradePage() {
 
 
 }
+
+
 
 
 function filterAndDisplayResults(searchTerm) {
@@ -182,6 +259,20 @@ function filterCourses(searchCourses) {
 }
 
 
+function calculateRequiredCredit(desiredPercentage, creditLeft) {
+  // Get the existing total grade, total points, and percentage
+  var totalGrade = parseFloat(document.querySelector(".classic-learn-iframe").contentWindow.document.querySelector(".total_grades .uic-grade").textContent.split("/")[0].trim());
+  var totalPointsPossible = parseFloat(document.querySelector(".classic-learn-iframe").contentWindow.document.querySelector(".total_grades .uic-grade").textContent.split("/")[1].trim());
+
+  totalPointsPossible += creditLeft;
+
+
+  var remainingPoints = (desiredPercentage / 100) * totalPointsPossible - totalGrade;
+
+  var requiredCredit = Math.max(0, remainingPoints);
+
+  return requiredCredit;
+}
 
 
 // Function to calculate and display total grades, total points, and percentage
@@ -348,3 +439,5 @@ browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
   }
 });
+
+
