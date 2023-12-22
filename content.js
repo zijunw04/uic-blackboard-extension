@@ -29,8 +29,6 @@ function addDeleteButtons() {
 }
 
 
-
-
 function gradePage() {
   //Flex
   var flexBox = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelector(".contentBox");
@@ -158,13 +156,13 @@ function gradePage() {
     var requiredCredit = calculateRequiredCredit(desiredPercentage, creditLeft);
 
     var percentageGoes = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelector(".calculate-desired-text .desired-percentage");
-    percentageGoes.textContent = "You want: " + desiredPercentage + "%"
+    percentageGoes.textContent = "You want " + desiredPercentage + "%"
 
     var creditLeftGoes = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelector(".calculate-desired-text .credit-left");
-    creditLeftGoes.textContent = "You have: " + creditLeft + " credit left"
+    creditLeftGoes.textContent = "You have " + creditLeft + " credit left"
 
     var percentageGoes = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelector(".calculate-desired-text .required-credit");
-    percentageGoes.textContent = "You need: " + requiredCredit.toFixed(2) + " to get " + desiredPercentage + "% in this class!"
+    percentageGoes.textContent = "You need at least " + requiredCredit.toFixed(2) + " credit to get " + desiredPercentage + "% in this class!"
 
 
     console.log("Required Credit:", requiredCredit);
