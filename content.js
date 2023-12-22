@@ -16,7 +16,7 @@ function addDeleteButtons() {
 
         deleteButton.addEventListener("click", function () {
           row.remove();
-          calculateAndDisplayTotal(); // Recalculate total after row removal
+          calculateAndDisplayTotal(); 
         });
 
         row.appendChild(deleteButton);
@@ -124,12 +124,14 @@ function gradePage() {
 
   var searchBar = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("input");
   searchBar.type = "text";
-  searchBar.setAttribute("style", "margin-top: 10px; margin-left: 10px; width: 95%; height: 53px; border-radius: 17px; border: 1px solid #000; font-size: 20px; ");
+  searchBar.setAttribute("style", "margin-top: 10px; margin-left: 10px; width: 96%; height: 53px; border-radius: 17px; border: 1px solid #000; font-size: 20px; ");
   searchBar.placeholder = "Search for an assignment...";
   searchBar.addEventListener("input", function (event) {
     var searchTerm = event.target.value.toLowerCase();
     filterAndDisplayResults(searchTerm);
   });
+
+  
 
   
   miscContent.append(searchBar)
