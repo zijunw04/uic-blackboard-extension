@@ -365,6 +365,7 @@ function processGradesPage() {
 
       gradeCourses.forEach(function (course) {
         course.setAttribute("style", "width: 500px; height: 450px; margin-left: 10px; margin-right: 10px;");
+        
       });
 
       var searchAva = document.querySelector(".current-term .searchCourses")
