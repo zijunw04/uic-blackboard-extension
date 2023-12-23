@@ -387,7 +387,7 @@ function processGradesPage() {
       
     }
   }
-  else if (isUICBlackboard()) {
+  if (isUICBlackboard() || isGradesPage()) {
     var sideBar = document.querySelector("#base_tools");
     if (sideBar) {
       var ifBarAva = document.querySelector(".uic-extention-tab")
