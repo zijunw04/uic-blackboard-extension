@@ -7,5 +7,12 @@ browser.webNavigation.onCompleted.addListener(function (details) {
       browser.tabs.sendMessage(details.tabId, { action: "gradeRevamp" });
     });
   }
+  else if (details.url.includes("uic.blackboard.com")) {
+    // Inject the content script into the tab
+    browser.tabs.executeScript(details.tabId, { file: "content.js" }, function () {
+      // After injecting the content script, send a message to check ID
+      browser.tabs.sendMessage(details.tabId, { action: "addExtensionButton" });
+    });
+  }
 });
 

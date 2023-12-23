@@ -346,6 +346,11 @@ function isGradesPage() {
   return window.location.href === urlPattern;
 }
 
+function isUICBlackboard() {
+  var urlPattern = "https://uic.blackboard.com/ultra/institution-page";
+  return window.location.href === urlPattern;
+}
+
 
 function processGradesPage() {
   if (isGradesPage()) {
@@ -380,6 +385,34 @@ function processGradesPage() {
 
       }
       
+    }
+  }
+  else if (isUICBlackboard()) {
+    var sideBar = document.querySelector("#base_tools");
+    if (sideBar) {
+      var ifBarAva = document.querySelector(".uic-extention-tab")
+      if (!ifBarAva) {
+        var extensionWeb = document.createElement("a");
+        extensionWeb.setAttribute("style", "height: 55px; display:flex; flex-direction: row; cursor:pointer; align-items:center; margin-left:15px; gap: 10px; text-decoration: none; ");
+        extensionWeb.setAttribute("href", "https://floatsink.me/");
+        extensionWeb.setAttribute("target", "_blank");
+        extensionWeb.className = "uic-extention-tab"
+
+        var extensionWebImg = document.createElement("img");
+        extensionWebImg.setAttribute("style", "height:24px; width: 24px; filter: invert(100%) brightness(0.80); ");
+        extensionWebImg.setAttribute("src", "https://static-00.iconduck.com/assets.00/extension-icon-2048x2048-9ttlxpnx.png");
+
+        var extensionWebExtra = document.createElement("span");
+        extensionWebExtra.setAttribute("style", "font: .875rem; color: #e5e5e5;  ");
+        extensionWebExtra.textContent = "UIC BB Extension"
+        
+
+        extensionWeb.append(extensionWebImg)
+        extensionWeb.append(extensionWebExtra)
+        sideBar.append(extensionWeb)
+      }
+
+
     }
   }
 }
@@ -431,8 +464,6 @@ browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
     sendResponse({});
   } 
-  else if (request.action === "myGradeChange") {
-  }
   else {
 
   }

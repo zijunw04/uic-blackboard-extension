@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Check ID Extension",
-  "version": "1.0",
-  "description": "Check if a website has a certain ID.",
+  "name": "UIC Blackboard Extension",
+  "version": "1.1",
+  "description": "The UIC Blackboard Extension is a powerful browser extension designed for students using the University of Illinois at Chicago's Blackboard Learn platform. It enhances your grading experience by providing streamlined features:",
   "permissions": ["activeTab", "webNavigation", "storage"],
   "browser_action": {
     "default_icon": {
