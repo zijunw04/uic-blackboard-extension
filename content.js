@@ -117,12 +117,12 @@ function gradePage() {
   //Misc
   var miscContent = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("div");
   miscContent.className = "miscContent";
-  miscContent.setAttribute("style", "border-radius: 20px; border: 1px solid #000; display:flex; width: 100%; height: 50vh; flex-direction: column; justify-content: center;");
+  miscContent.setAttribute("style", "border-radius: 20px; border: 1px solid #000; display:flex; width: 100%; height: 50vh; flex-direction: column; ");
 
 
   var searchBar = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("input");
   searchBar.type = "text";
-  searchBar.setAttribute("style", "margin-top: 10px; margin-left: 10px; width: 95%; height: 53px; border-radius: 17px; border: 1px solid #000; font-size: 20px; ");
+  searchBar.setAttribute("style", "margin-top: 10px; margin-left: 10px; width: 93%; height: 53px; border-radius: 17px; border: 1px solid #000; font-size: 20px; ");
   searchBar.placeholder = "Search for an assignment...";
   searchBar.addEventListener("input", function (event) {
     var searchTerm = event.target.value.toLowerCase();
@@ -355,7 +355,7 @@ function isUICBlackboard() {
 function processGradesPage() {
   if (isGradesPage()) {
     var gradePageContent = document.querySelector("#container-term-current .grades-list .base-grades-term-wrapper");
-    
+
     if (gradePageContent) {
       
       var gradeContent = document.querySelector("#container-term-current .grades-list .base-grades-term-wrapper");
