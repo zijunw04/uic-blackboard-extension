@@ -395,7 +395,7 @@ function processGradesPage() {
       if (!ifBarAva) {
         var extensionWeb = document.createElement("a");
         extensionWeb.setAttribute("style", "height: 55px; display:flex; flex-direction: row; cursor:pointer; align-items:center; margin-left:15px; gap: 10px; text-decoration: none; ");
-        extensionWeb.setAttribute("href", "https://floatsink.me/");
+        extensionWeb.setAttribute("href", "https://uic-blackboard-extension.vercel.app/");
         extensionWeb.setAttribute("target", "_blank");
         extensionWeb.className = "uic-extention-tab"
 
