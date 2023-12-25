@@ -351,6 +351,43 @@ function isUICBlackboard() {
   return window.location.href === urlPattern;
 }
 
+function isProfilePage() {
+  var urlPattern = "https://uic.blackboard.com/ultra/profile";
+  return window.location.href === urlPattern;
+}
+
+function isStreamPage() {
+  var urlPattern = "https://uic.blackboard.com/ultra/stream";
+  return window.location.href === urlPattern;
+}
+
+function isCoursesPage() {
+  var urlPattern = "https://uic.blackboard.com/ultra/course";
+  return window.location.href === urlPattern;
+}
+
+function isCalendarPage() {
+  var urlPattern = "https://uic.blackboard.com/ultra/calendar";
+  return window.location.href === urlPattern;
+}
+
+function isMessagesPage() {
+  var urlPattern = "https://uic.blackboard.com/ultra/messages";
+  return window.location.href === urlPattern;
+}
+
+function isAssistPage() {
+  var urlPattern = "https://uic.blackboard.com/ultra/integration/bbAssist";
+  return window.location.href === urlPattern;
+}
+
+function isToolPage() {
+  var urlPattern = "https://uic.blackboard.com/ultra/tools";
+  return window.location.href === urlPattern;
+}
+
+
+
 
 function processGradesPage() {
   if (isGradesPage()) {
@@ -388,7 +425,7 @@ function processGradesPage() {
       
     }
   }
-  if (isUICBlackboard() || isGradesPage()) {
+  if (isUICBlackboard() || isGradesPage() || isProfilePage() || isStreamPage() || isCoursesPage() || isCalendarPage() || isMessagesPage() || isAssistPage() || isToolPage()) {
     var sideBar = document.querySelector("#base_tools");
     if (sideBar) {
       var ifBarAva = document.querySelector(".uic-extention-tab")
