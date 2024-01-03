@@ -3,7 +3,7 @@ var buttonsAndRowAdded = false;
 
 // Function to dynamically add "X" marks to graded rows
 function addDeleteButtons() {
-  var runTheRevamp = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelectorAll("#grades_wrapper .graded_item_row").length > 0;
+  var runTheRevamp = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelectorAll("#grades_wrapper").length > 0;
   if (runTheRevamp) {
     if (!buttonsAndRowAdded) {
       var gradedRows = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelectorAll("#grades_wrapper .graded_item_row");
@@ -277,7 +277,8 @@ function calculateRequiredCredit(desiredPercentage, creditLeft) {
 function calculateAndDisplayTotal() {
   // Find all elements with the specified class within the iframe
   var gradeElements = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelectorAll("#grades_wrapper .graded_item_row .cell .grade");
-  var pointsPossibleElements = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelectorAll("#grades_wrapper .graded_item_row  .cell .pointsPossible");
+  var pointsPossibleElements = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelectorAll("#grades_wrapper .sortable_item_row:not(.calculatedRow) .cell .pointsPossible");
+  
 
   // Function to extract only numeric values from element text content
   function extractNumericValues(elements, isPointsPossible) {
