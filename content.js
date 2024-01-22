@@ -130,10 +130,10 @@ function gradePage() {
   });
 
   var calculateDesire = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("div");
-  calculateDesire.setAttribute("style", "width: 100%; height: 500px; flex-direction: row; display: flex; justify-content: space-between");
+  calculateDesire.setAttribute("style", "width: 100%; flex-direction: row; display: flex; justify-content: space-between");
 
   var calculateDesireCalculatePart = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("div");
-  calculateDesireCalculatePart.setAttribute("style", "width: 45%; height: 500px; flex-direction: column; display: flex;");
+  calculateDesireCalculatePart.setAttribute("style", "width: 45%;  flex-direction: column; display: flex;");
   
   var percentageInput = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("input");
   percentageInput.type = "number";
