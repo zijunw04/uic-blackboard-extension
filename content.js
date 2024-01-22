@@ -44,11 +44,11 @@ function gradePage() {
 
   //Change Container
   var containerOver = document.querySelector(".classic-learn-iframe").contentWindow.document.querySelector("#containerdiv");
-  containerOver.setAttribute("style", "overflow-y: scroll; max-height:87vh; min-height:87vh; overflow-x: hidden;");
+  containerOver.setAttribute("style", "overflow-y: scroll; min-height:87vh; overflow-x: hidden;");
 
 
   var classData = document.querySelector(".classic-learn-iframe").contentWindow.document.createElement("div");
-  classData.setAttribute("style", "display: flex; margin-top: 20px; background: white; padding: 20px 10% 20px 10%; border: 2px solid #cdcdcd; max-height:87vh; flex-wrap: wrap; flex-direction: column; align-items: center; margin-right: 10px;");
+  classData.setAttribute("style", "display: flex; margin-top: 20px; background: white; padding: 20px 10% 20px 10%; border: 2px solid #cdcdcd; flex-wrap: wrap; flex-direction: column; align-items: center; margin-right: 10px;");
 
   
   //Class Box
