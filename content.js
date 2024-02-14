@@ -478,6 +478,35 @@ processGradesPage();
 observeDOMChanges();
 
 
+function autoLogin() {
+  console.log("Auto Login")
+  var loginButton = document.querySelector("#loginurl");
+  if (loginButton) {
+      loginButton.click();
+      console.log("Button clicked"); 
+  }
+
+  setTimeout(function() {
+    var loginButtonMic = document.querySelector(".table");
+    
+    if (loginButtonMic) {
+        loginButtonMic.click();
+        loginButtonMic.click();
+        console.log("Button clicked");
+    }
+  }, 1000);
+
+  setTimeout(function() {
+    var loginButtonMic = document.querySelector("#submitButton");
+    
+    if (loginButtonMic) {
+        loginButtonMic.click();
+        console.log("Button clicked");
+    }
+  }, 1000);
+  
+}
+
 
 // Listen for messages from the popup
 browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
@@ -503,6 +532,18 @@ browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
     sendResponse({});
   } 
+  else if (request.action === "autoLoginBB") {
+    autoLogin();
+    sendResponse({});
+  }
+  else if (request.action === "autoLoginMicrosoft") {
+    autoLogin();
+    sendResponse({});
+  }
+  else if (request.action === "autoLoginUIC") {
+    autoLogin();
+    sendResponse({});
+  }
   else {
 
   }
